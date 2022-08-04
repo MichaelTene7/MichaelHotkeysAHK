@@ -69,7 +69,8 @@ Return
 ;Send, SARS-CoV-2
 ;Return
 
-; ------ Bot Hotkeys 
+
+; ------ Bot Control Hotkeys; DISABLE IF NOT USING DISCORD BOTS
 +^8::
 Send, &play
 Send, {Space}  
@@ -89,41 +90,9 @@ Return
 Send, &clear
 Send, {Space}  
 Return
-; --------
-; Double button test
-;Volume_Up::
-;My_Volume_Up := 1
-;KeyWait, Volume_Down, D L T0.1
-;	if (Errorlevel = 1)
-;		send, a ; single button F2
-;	else
-;		send, c ; Output
-;My_Volume_Up := 0
-;return
-;
-;Volume_Down::
-;if (My_Volume_Up = 1)
-;	return
-;send, b ;{Volume_Down}
-;return
-;--------------
-;~Volume_Up::
-;My_F2 := 1
-;KeyWait, Volume_Down, D L T0.1
-;	if (Errorlevel = 1)
-;		;send, a ; single button F2
-;		return
-;	else
-;		send, {space} ; button combo F2 - F4
-;My_F2 := 0
-;return
-;
-;~Volume_Down::
-;if (My_F2 = 1)
-;	return
-;send, b
-return
-;----------
+
+; ------ CODE TO USE VOLUME BUTTONS AS MEDIA CONTROLS. IF YOU DO NOT WANT THIS, MAKE SURE TO COMMENT OUT.
+; ------ Results in "double click volume up" as 'Space' (pause); and "double click volume down" as rewind (left)
 
 ~$Volume_Up up::
 if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 300 && A_TimeSincePriorHotkey > 200)
@@ -158,15 +127,6 @@ else
 	;Send {Volume_Down up}
 }
 return
-
-;~Volume_Down::
-;    KeyWait, Volume_Down			; wait for z to be released
-;    KeyWait, Volume_Down, D T0.2		; and pressed again within 0.2 seconds
-;    if ErrorLevel 			; timed-out (only a single press)
-;        Return
-;    Else
-;        Send b
-;Return
 
 
 
@@ -207,9 +167,6 @@ Sleep, 5000
 SendMessage,0x112,0xF170,2,,Program Manager
 Return
 
-;+^s::
-;SendMessage,0x112,0xF170,2,,Program Manager
-;return
 
 ; ---- Media-movement-to-arrow-keys DISABLED ----
 
