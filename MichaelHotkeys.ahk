@@ -52,13 +52,28 @@ return
 Send, ∞
 return
 
+
+;---Code Commands---
+!1::
+Send, {text} !=
+return 
+
+
+;----R shortcuts ---
+
 !+p::
 Send, `%`>`%
 return
 
-^+s::
-Send, &sp=CAASAhAB
-return 
+!c::
+Send, c(
+return
+
+
+
+
+
+
 
 Xbutton2::
 Send, {Space}
