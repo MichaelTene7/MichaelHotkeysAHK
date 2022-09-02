@@ -1,4 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -21,7 +21,7 @@ Return
 Send, ≠
 Return
 
-^+p::
+!+p::
 Send, 𝜋
 Return
 
@@ -61,13 +61,13 @@ return
 
 ;----R shortcuts ---
 
-!+p::
+^+p::
 Send, `%`>`%
 return
 
-!c::
-Send, c(
-return
+;!c::
+;Send, c(
+;return
 
 
 
@@ -142,6 +142,7 @@ else
 	;Send {Volume_Down up}
 }
 return
+
 
 
 
@@ -358,4 +359,29 @@ return
 ; ---------------------------------
 
 
+; ------ Code for changing font quickly in googledocs
+; Google docs font change shortcut: Courier New, for monospace
+!c::
+Send, !/
+Sleep, 100
+Send, Courier New
+Sleep, 200
+Send, {Enter}
+return
 
+; Google docs font change shortcut: Arial
+!a::
+Send, !/
+Sleep, 100
+Send, Arial
+Sleep, 200
+Send, {Enter}
+return
+
+
+;--------- expand folder windows explorer -----
+!^8:: 
+SetNumLockState, On
+Send {NumpadMult}
+SetNumLockState, Off
+return
