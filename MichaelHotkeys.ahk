@@ -7,6 +7,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
  ;#Installkeybdhook
  ;#installmousehook
 
+; ^ codes for cntl, + codes for shift, ! codes for alt # codes for windows-key, and semicolons mean the code ignores the rest of the line 
+
 ; ----- Shortcut Commands 
 
 ^+/::
@@ -70,7 +72,8 @@ return
 ;return
 
 
-
+^!c::
+Send, {Ctrl down}b{Ctrl up}[Complete]{Ctrl down}b{Ctrl up}
 
 
 
@@ -97,12 +100,12 @@ Send, {Space}
 Return
 
 +^0::
-Send, &loop 
+Send, &repeat single 
 Send, {Space} 
 Return
 
 +^9::
-Send, &clear
+Send, &remove all
 Send, {Space}  
 Return
 
@@ -156,32 +159,16 @@ return
 ; Return
 
 
-; ---- NEW HOTSTRING TEMPLATE ----
-; This will let you replace any string of charcters with a longer message (eg. clash's message-to-meme-autofill)
-; However, these need the keyboardhook active to work (this uses memory)
-; EXAMPLE: 
-; ::btw::by the way (runs once you press space)
-; :*:btw::by the way (runs once you press the final y) 
-
-; ::[your string here]::[your output here]
-; Return
-
-; ::[your string here]::
-; (
-; [Your long or multiparagraph message here]  
-; )
-; Return
-
 ; ---- Always on top hotkey ----
 
 ^+o::  Winset, Alwaysontop, , A
 
 ; ---- Sleep Commands ---
-^+f::
+;^+f::
 ;Send, k
-Sleep, 5000
-SendMessage,0x112,0xF170,2,,Program Manager
-Return
+;Sleep, 5000
+;SendMessage,0x112,0xF170,2,,Program Manager
+;Return
 
 
 ; ---- Media-movement-to-arrow-keys DISABLED ----
@@ -255,7 +242,24 @@ return
 
 
 
+; ------ Code for changing font quickly in googledocs
+; Google docs font change shortcut: Courier New, for monospace
+!c::
+Send, !/
+Sleep, 100
+Send, Courier New
+Sleep, 200
+Send, {Enter}
+return
 
+; Google docs font change shortcut: Arial
+!a::
+Send, !/
+Sleep, 100
+Send, Arial
+Sleep, 200
+Send, {Enter}
+return
 
 
 
@@ -287,10 +291,10 @@ return
     }
     return
 
-    #w::
-    DetectHiddenWindows, on
-    WinSet, TransColor, Black 128, A
-    return
+   ;#w::
+   ;DetectHiddenWindows, on
+   ;WinSet, TransColor, Black 128, A
+   ;return
 
     #o::
     WinSet, Transparent, 255, A
@@ -359,29 +363,28 @@ return
 ; ---------------------------------
 
 
-; ------ Code for changing font quickly in googledocs
-; Google docs font change shortcut: Courier New, for monospace
-!c::
-Send, !/
-Sleep, 100
-Send, Courier New
-Sleep, 200
-Send, {Enter}
-return
-
-; Google docs font change shortcut: Arial
-!a::
-Send, !/
-Sleep, 100
-Send, Arial
-Sleep, 200
-Send, {Enter}
-return
 
 
-;--------- expand folder windows explorer -----
-!^8:: 
-SetNumLockState, On
-Send {NumpadMult}
-SetNumLockState, Off
-return
+
+
+
+
+; ---- NEW HOTSTRING TEMPLATE ----
+; This will let you replace any string of charcters with a longer message (eg. clash's message-to-meme-autofill)
+; However, these need the keyboardhook active to work (this uses memory)
+; EXAMPLE: 
+; ::btw::by the way (runs once you press space)
+; :*:btw::by the way (runs once you press the final y) 
+
+; ::[your string here]::[your output here]
+; Return
+
+; ::[your string here]::
+; (
+; [Your long or multiparagraph message here]  
+; )
+; Return
+
+
+
+
