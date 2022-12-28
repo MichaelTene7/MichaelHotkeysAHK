@@ -1,4 +1,4 @@
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -10,6 +10,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; ^ codes for cntl, + codes for shift, ! codes for alt # codes for windows-key, and semicolons mean the code ignores the rest of the line 
 
 ; ----- Shortcut Commands 
+
+^+3::
+Send, ♤
+return
 
 ^+/::
 Send,‽
@@ -50,10 +54,21 @@ return
 ^+u::
 Send, μ
 return
-^+i::
+!+i::
 Send, ∞
 return
 
+^+6::
+Send, ⌄
+return
+
+^+,::
+Send, ≤
+return
+
+^+.::
+Send, ≥
+return
 
 ;---Code Commands---
 !1::
@@ -76,10 +91,10 @@ return
 Send, {Ctrl down}b{Ctrl up}[Complete]{Ctrl down}b{Ctrl up}
 
 
-
+;---------------
 
 Xbutton2::
-Send, {Space}
+Send, {Space}     
 #IfWinActive
 Return
 
@@ -99,15 +114,32 @@ Send, &skip
 Send, {Space}
 Return
 
-+^0::
++^9::
 Send, &repeat single 
 Send, {Space} 
 Return
 
-+^9::
++^0::
 Send, &remove all
 Send, {Space}  
 Return
+
+;----- Semi Auto Discord font change
+
+^+f::
+    changeFont(){
+        WinActivate, ahk_exe Discord.exe
+        SendInput ^+i
+        Sleep 3000
+        Send {ctrl down}``{ctrl up}
+        Sleep 3000
+        Send {text}let whitneyLove = document.createElement('style');
+	Send +{enter}
+        Send {text}whitneyLove.innerHTML = 'body{ font-family: "Noto Sans"}'
+	Send +{enter}
+        Send {text}document.head.appendChild(whitneyLove); `n
+	SendInput ^+i
+}
 
 ; ------ CODE TO USE VOLUME BUTTONS AS MEDIA CONTROLS. IF YOU DO NOT WANT THIS, MAKE SURE TO COMMENT OUT.
 ; ------ Results in "double click volume up" as 'Space' (pause); and "double click volume down" as rewind (left)
@@ -147,6 +179,37 @@ else
 return
 
 
+; ----- MOUSE 3 BUTTON FUNCTIONS---- 
+
+^+t:: 
+if (MouseSetting == 2)
+{
+	MouseSetting := 3 	
+	TrayTip,, MouseSetting Alt
+
+} else 
+if (MouseSetting == 3)
+{
+	MouseSetting := 1 	
+	TrayTip,, MouseSetting F14
+} else
+{
+	MouseSetting := 2 	
+	TrayTip,, MouseSetting Ctrl
+}
+return
+
+
+#If (MouseSetting == 2)
+f14::Ctrl
+return
+#If 
+
+#If (MouseSetting == 3) 
+f14::Alt
+return
+#If
+
 
 
 ; ---- NEW SHORTCUT TEMPLATE ----
@@ -162,6 +225,10 @@ return
 ; ---- Always on top hotkey ----
 
 ^+o::  Winset, Alwaysontop, , A
+return
+
+
+
 
 ; ---- Sleep Commands ---
 ;^+f::
@@ -201,6 +268,33 @@ Send, {Left}
 #IfWinActive
 Return
 
+; -- new mouse keys 
+
+#IfWinActive Ahk_class Chrome_WidgetWin_1
+F15::
+Send, ^{Tab}
+#IfWinActive
+Return
+
+#IfWinActive Ahk_class Chrome_WidgetWin_1
+F16::
+Send, +^{Tab}
+#IfWinActive
+Return
+
+
+#IfWinActive Ahk_class Chrome_WidgetWin_1
+F17::
+Send, {Media_Next}	
+#IfWinActive
+Return
+
+#IfWinActive Ahk_class Chrome_WidgetWin_1
+F18::
+Send, {Media_Prev}
+#IfWinActive
+Return
+
 
 
 ; ---- Firefox-only media-movement-to-arrow-keys ----
@@ -223,6 +317,38 @@ Send, {Left}
 #IfWinActive
 Return
 
+; -- new mouse keys 
+
+#IfWinActive Ahk_class MozillaWindowClass
+F15::
+Send, ^{Tab}
+#IfWinActive
+Return
+
+#IfWinActive Ahk_class MozillaWindowClass
+F16::
+Send, +^{Tab}
+#IfWinActive
+Return
+
+
+#IfWinActive Ahk_class MozillaWindowClass
+F17::
+Send, {Media_Next}
+#IfWinActive
+Return
+
+#IfWinActive Ahk_class MozillaWindowClass
+F18::
+Send, {Media_Prev}
+#IfWinActive
+Return
+
+#IfWinActive Ahk_class MozillaWindowClass
+F14::
+Send, {Left}
+#IfWinActive
+Return
 
 
 
@@ -248,7 +374,7 @@ return
 Send, !/
 Sleep, 100
 Send, Courier New
-Sleep, 200
+Sleep, 300
 Send, {Enter}
 return
 
@@ -257,7 +383,7 @@ return
 Send, !/
 Sleep, 100
 Send, Arial
-Sleep, 200
+Sleep, 300
 Send, {Enter}
 return
 
@@ -361,7 +487,6 @@ If (style & 0x20000)
 return
 
 ; ---------------------------------
-
 
 
 
