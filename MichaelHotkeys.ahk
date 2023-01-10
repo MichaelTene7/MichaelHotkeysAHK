@@ -1,4 +1,4 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -350,8 +350,11 @@ Send, {Left}
 #IfWinActive
 Return
 
+; ---- Oblivion hotkey -----
 
-
++^[::
+Send, {Space 100}
+Return
 
 
 ; ---- Window Name retrival Code (used to get names for above program-specific hotkeys ----
@@ -509,6 +512,9 @@ return
 ; [Your long or multiparagraph message here]  
 ; )
 ; Return
+
+
+
 
 
 
