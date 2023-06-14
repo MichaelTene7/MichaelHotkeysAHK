@@ -1,4 +1,4 @@
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
+﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -147,9 +147,9 @@ Return
 ~$Volume_Up up::
 if (A_ThisHotkey = A_PriorHotkey && A_TimeSincePriorHotkey < 300 && A_TimeSincePriorHotkey > 200)
 {
-	Send {Space down}
+	Send {Media_Play_Pause down}
 	keywait Volume_Up
-	Send {Space up}
+	Send {Media_Play_Pause up}
 	Send {Volume_Down}
         Send {Volume_Down}
 }
@@ -181,7 +181,7 @@ return
 
 ; ----- MOUSE 3 BUTTON FUNCTIONS---- 
 
-^+t:: 
+^+y:: 
 if (MouseSetting == 2)
 {
 	MouseSetting := 3 	
@@ -346,7 +346,7 @@ Return
 
 #IfWinActive Ahk_class MozillaWindowClass
 F14::
-Send, {Left}
+Send, {Right}
 #IfWinActive
 Return
 
@@ -512,10 +512,3 @@ return
 ; [Your long or multiparagraph message here]  
 ; )
 ; Return
-
-
-
-
-
-
-
